@@ -9,11 +9,12 @@ body {
 }
 
 a.nav-link {
-	color: #749D69;
-	font-size: 14px;
+	color: rgb(104, 159, 99);
+	font-size: 18px;
 	padding-right: 10px;
 	padding-left: 10px;
-	padding-top: 15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 a.nav-link:hover{
@@ -21,25 +22,31 @@ a.nav-link:hover{
 }
 
 .nav-item{
-	color:#749D69;
+	color:rgb(104, 159, 99);
 	font-size: 30px;
 }
+
+
 a.title:hover {
 	color: white;
 }
 
 a.title{
-	color: #749D69;
-	font-size: 30px;
-	
+	color: rgb(104, 159, 99);
+	font-size: 42px;
+	padding-left: 20px;
 }
 
 
 .container-fluid{
-	padding-top: 60px;
+	font-family: 'Roboto', sans-serif;
 }
 
 .footer {
 	background-color: #333333;
+}
+
+#body {
+	padding-top: 150px;
 }
 
