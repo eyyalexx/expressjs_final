@@ -1,10 +1,17 @@
 body {
     background-color: rgb(132, 196, 132);
-    font-family:
+    overflow-y;
 }
 
 
 .nav {
-    box-shadow: 0 0 8px 0;
+    box-shadow: 0 0 5px 0;
     background-color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a.nav-link {
+	color: black;
+	padding-right: 10px;
+	padding-left: 10px;
 }
