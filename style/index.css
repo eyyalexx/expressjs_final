@@ -1,17 +1,17 @@
 body {
-    background-color: rgb(132, 196, 132);
-    overflow-y;
+    background-color: #ecf0f1;
 }
 
 
 .nav {
-    box-shadow: 0 0 5px 0;
-    background-color: white;
+    background-color: #34495e;
     font-family: 'Open Sans', sans-serif;
 }
 
 a.nav-link {
 	color: black;
+	font-size: 14px;
 	padding-right: 10px;
 	padding-left: 10px;
+	padding-top: 15px;
 }
