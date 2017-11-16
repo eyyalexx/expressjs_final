@@ -9,6 +9,7 @@ body {
 }
 
 a.nav-link {
+	transition: color 0.5s ease;
 	color: rgb(104, 159, 99);
 	font-size: 18px;
 	padding-right: 10px;
@@ -32,6 +33,7 @@ a.title:hover {
 }
 
 a.title{
+	transition: color 0.5s ease;
 	color: rgb(104, 159, 99);
 	font-size: 42px;
 	padding-left: 20px;
