@@ -1,15 +1,15 @@
 body {
-    background-color: #ecf0f1;
+    background-color: #FFFFFF;
 }
 
 
 .nav {
-    background-color: #34495e;
+    background-color: #333333;
     font-family: 'Open Sans', sans-serif;
 }
 
 a.nav-link {
-	color: black;
+	color: #749D69;
 	font-size: 14px;
 	padding-right: 10px;
 	padding-left: 10px;
@@ -17,13 +17,29 @@ a.nav-link {
 }
 
 a.nav-link:hover{
-	color: #c0392b;;
+	color: white;
 }
 
+.nav-item{
+	color:#749D69;
+	font-size: 30px;
+}
 a.title:hover {
-	color: #c0392b;
+	color: white;
 }
 
 a.title{
-	color: black;
+	color: #749D69;
+	font-size: 30px;
+	
 }
+
+
+.container-fluid{
+	padding-top: 60px;
+}
+
+.footer {
+	background-color: #333333;
+}
+
