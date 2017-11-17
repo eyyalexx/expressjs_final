@@ -7,6 +7,11 @@ body {
 	width:60px;
 	padding-top: 0px;
 }
+
+#portrait{
+	max-width:200px;
+}
+
 .nav {
     background-color: #333333;
     font-family: 'Open Sans', sans-serif;
@@ -67,5 +72,10 @@ body {
 
 #body {
 	padding-top: 150px;
+}
+
+.contrib {
+	padding: 20px;
+	background-color: whitesmoke;
 }
 
