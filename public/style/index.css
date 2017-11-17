@@ -2,13 +2,17 @@ body {
     background-color: #FFFFFF;
 }
 
-
+#logo{
+	height:60px;
+	width:60px;
+	padding-top: 0px;
+}
 .nav {
     background-color: #333333;
     font-family: 'Open Sans', sans-serif;
 }
 
-a.nav-link {
+.nav-link {
 	transition: color 0.5s ease;
 	color: rgb(104, 159, 99);
 	font-size: 18px;
@@ -16,9 +20,15 @@ a.nav-link {
 	padding-left: 10px;
 	padding-top: 30px;
 	padding-bottom: 25px;
+	border: none;
+	background: none;
 }
 
-a.nav-link:hover{
+.nav-link:focus{
+	outline: 0;
+}
+
+.nav-link:hover{
 	color: white;
 }
 
@@ -28,15 +38,22 @@ a.nav-link:hover{
 }
 
 
-a.title:hover {
+.title:hover {
 	color: white;
 }
 
-a.title{
+.title{
 	transition: color 0.5s ease;
+	text-decoration: none;
 	color: rgb(104, 159, 99);
 	font-size: 42px;
 	padding-left: 20px;
+	border: none;
+	background: none;
+}
+
+.title:focus{
+	outline: 0;
 }
 
 
