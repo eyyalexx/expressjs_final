@@ -1,4 +1,99 @@
 <% include partials/header %>
 <% include partials/navbar %>
-<h1>INSTALL</h1>
+<h1>Installing</h1>
+<p>
+    Express.js is a framework for <a href="https://nodejs.org/en/">Node.js</a>, so the follwoing
+    assumes you have <a href="https://nodejs.org/en/">Node.js</a> installed.
+</p>
+
+<br>
+
+<h2>Step 1: create a directory for your Express.js application</h2>
+
+<br>
+
+<figure class="highlight">
+    <pre>
+        <code>
+            $ mkdir application_directory
+        </code>
+    </pre>
+</figure>
+
+<br>
+
+<h2>Step 2: navigate to your 'application_directory'</h2>
+
+<br>
+
+<figure class="highlight">
+    <pre>
+        <code>
+            $ cd application_directory
+        </code>
+    </pre>
+</figure>
+
+<br>
+
+<h2>Step 3: Use the <code>npm init</code> command to create a package.json file for your application. </h2>
+
+<br>
+
+<figure class="highlight">
+    <pre>
+        <code>
+            $ npm init
+        </code>
+    </pre>
+</figure>
+<p style="margin-bottom: 15px;margin-top:15px;">
+    This will ask you a bunch of questions such as the name and version of your application.
+    After initilization process is complete a package.json will be written for you.
+    If you already have a package.json file, it'll read that first, and default to the options in there.
+    For now, you can simply hit 'RETURN' to accept the defaults for most of them, with the following exception:
+</p>
+<figure class="highlight">
+    <pre>
+        <code>
+            entry point: (index.js)
+        </code>
+    </pre>
+</figure>
+
+<p>
+    Enter app.js, or whatever you want the name of the main file to be. 
+    If you want it to be index.js, hit RETURN to accept the suggested default file name.
+</p>
+
+<br>
+
+<h2>Step 4: Install express in the myapp.js directory</h2>
+
+<br>
+
+<figure class="highlight">
+    <pre>
+        <code>
+            $ npm install express --save
+        </code>
+    </pre>
+</figure>
+
+<p>
+    Note, This will install express in the myapp directory and save it in the dependencies list.
+    If you wish to install Express temporarily and not add it to the dependencies list, use the following: 
+</p>
+
+<figure class="highlight">
+    <pre>
+        <code>
+            $ npm install express --no-save
+        </code>
+    </pre>
+</figure>
+
+<br>
+<br>
+<br>
 <% include partials/footer %>
