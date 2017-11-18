@@ -3,9 +3,8 @@ body {
 }
 
 #logo{
-	height:60px;
-	width:60px;
-	padding-top: 0px;
+	height:55px;
+	width:55px;
 }
 
 #portrait{
@@ -17,14 +16,18 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+
+.title {
+	padding-bottom: 15px;
+}
+
 .nav-link {
 	transition: color 0.5s ease;
 	color: rgb(104, 159, 99);
 	font-size: 18px;
-	padding-right: 10px;
+	padding-right: 5px;
 	padding-left: 10px;
-	padding-top: 30px;
-	padding-bottom: 25px;
+	padding-top: 26px;
 	border: none;
 	background: none;
 }
@@ -39,7 +42,8 @@ body {
 
 .nav-item{
 	color:rgb(104, 159, 99);
-	font-size: 30px;
+	font-size: 25px;
+	padding-bottom: 10px;
 }
 
 
