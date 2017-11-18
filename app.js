@@ -45,8 +45,8 @@ app.post('/page', function(request, response){
 			break;
 		case 'credits':
 			var contributors = [
-        			{ name: 'Alex Grigorev', picture: 'pictures/No_Picture.jpg' },
-        			{ name: 'Taranpreet Saini', picture: 'pictures/No_Picture.jpg' },
+        			{ name: 'Alex Grigorev', picture: 'pictures/Alex.jpg' },
+        			{ name: 'Taranpreet Saini', picture: 'pictures/Taranpreet.jpg' },
         			{ name: 'Kevin Nguyen', picture: 'pictures/Kevin.jpg' },
 				{ name: 'Dawson Brown', picture: 'pictures/Dawson.jpg'}
     			];

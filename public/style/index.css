@@ -11,11 +11,10 @@ body {
 	width:55px;
 }
 
-#portrait{
-	object-fit: cover;
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
+#nodelogo{
+	width:500px;
+	float:right;
+	padding-left:30px;
 }
 
 .nav {
@@ -85,8 +84,23 @@ body {
 	padding-top: 150px;
 }
 
-.contrib {
-	padding: 20px;
-	background-color: whitesmoke;
+a:link {
+	transition: color 0.3s ease;
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(104, 159, 99);
+	text-decoration: none;
+}
+
+.intro{
+	line-height: 200%;
+	color: #333333;
+}
+
+.section{
+	padding-top:60px;
+	line-height: 150%;
 }
 

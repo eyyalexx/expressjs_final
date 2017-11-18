@@ -1,0 +1,12 @@
+.contrib {
+	padding: 20px;
+	background-color: whitesmoke;
+	text-align: center;
+}
+
+#portrait{
+	object-fit: cover;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%; 
+}
