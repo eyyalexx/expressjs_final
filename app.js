@@ -31,7 +31,7 @@ app.get('/install', function(request, response){
 });
 
 app.get('/how', function(request, response){
-	response.render('Tutorial');
+	response.render('how');
 });
 
 app.get('/result', function(request, response){
