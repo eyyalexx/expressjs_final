@@ -26,33 +26,30 @@ app.get('/index.html', function(request, response){
 	response.render('index');//send index.ejs to client 
 });
 
-app.post('/page', function(request, response){
-	switch(request.body.menuitem){
-		case 'title':
-			response.render('index');
-			break;
-		case 'install':
-			response.render('install');
-			break;
-		case 'how':
-			response.render('how');
-			break;
-		case 'result':
-			response.render('result');
-			break;
-		case 'rating':
-			response.render('rating');
-			break;
-		case 'credits':
-			var contributors = [
-        			{ name: 'Alex Grigorev', picture: 'pictures/Alex.jpg' },
-        			{ name: 'Taranpreet Saini', picture: 'pictures/Taranpreet.jpg' },
-        			{ name: 'Kevin Nguyen', picture: 'pictures/Kevin.jpg' },
-				{ name: 'Dawson Brown', picture: 'pictures/Dawson.jpg'}
-    			];
-			response.render('credits', {contributors: contributors});
-			break;
-	}
+app.get('/install', function(request, response){
+	response.render('install');
+});
+
+app.get('/how', function(request, response){
+	response.render('how');
+});
+
+app.get('/result', function(request, response){
+	response.render('result');
+});
+
+app.get('/rating', function(request, response){
+	response.render('rating');
+});
+
+app.get('/credits', function(request, response){
+	var contributors = [
+        	{ name: 'Alex Grigorev', picture: 'pictures/Alex.jpg' },
+        	{ name: 'Taranpreet Saini', picture: 'pictures/Taranpreet.jpg' },
+        	{ name: 'Kevin Nguyen', picture: 'pictures/Kevin.jpg' },
+			{ name: 'Dawson Brown', picture: 'pictures/Dawson.jpg'}
+    	];
+		response.render('credits', {contributors: contributors});
 });
 
 //start server
