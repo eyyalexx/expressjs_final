@@ -6,7 +6,7 @@
 
 #portrait{
 	object-fit: cover;
-	width: 150px;
-	height: 150px;
-	border-radius: 50%; 
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 }
