@@ -15,6 +15,7 @@
 </figure>
 <p class="section">Once Express and EJS are setup, create a file called <i>app.js</i> or the name of your entry point specified inside your package.json. For the purposes of this tutorial, we will call this file: <i>app.js</i>.</p>
 <p>Before we begin writing our HTML, we must setup a few things inside app.js.</p>
+<hr>
 <p>Like most languages we must include libraries/frameworks we will be using:</p>
 <figure class="highlight">
 	<pre>
@@ -55,6 +56,43 @@ to do this, we type in the follow code/method:</p>
 		</code>
 	</pre>
 </figure>
+<br>
+<p>Your app.js should look like this:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			var express = require('express');<br>
+			var bodyParser = require('body-parser');<br>
+			var path = require('path');<br><br>
+			var app = express();<br><br>
+			app.get('/', function(request, response){<br>
+			&nbsp&nbsp&nbsp response.render('index');<br>
+			});<br><br>
+			app.listen(80, function(){<br>
+			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 80);<br>
+			});
+		</code>
+	</pre>
+</figure>
+<p>To host this website, navigate into your project and open a terminal and type in the following line:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			$ node app.js
+		</code>
+	</pre>
+</figure>
+<p>If everything went well, we should see:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			$ node app.js<br>
+			Server started on Port 80
+		</code>
+	</pre>
+</figure>
+<p>Congradulations, we just made our first express application!<br>Now the fun part, editing/creating our index.ejs.</p>
+<hr>
 
 
 <% include partials/footer %>
