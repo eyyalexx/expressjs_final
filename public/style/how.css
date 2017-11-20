@@ -51,3 +51,7 @@ i {
   font-size: inherit;
   color: #333333; /* Effectively the base text color */
 }
+
+hr {
+  padding-bottom: 50px;
+}
