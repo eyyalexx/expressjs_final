@@ -29,7 +29,7 @@ i {
   color: rgb(104, 159, 99)
 }
 
-.funfact {
+.hint {
   padding: 9px 14px;
   margin-bottom: 25px;
   background-color: #F5D76E;
@@ -37,7 +37,7 @@ i {
   border-radius: 4px;
 }
 
-.funfact pre {
+.hint pre {
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -47,7 +47,7 @@ i {
   border: 0;
 }
 
-.funfact pre code {
+.hint pre code {
   font-size: inherit;
   color: #333333; /* Effectively the base text color */
 }
