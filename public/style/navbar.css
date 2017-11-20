@@ -69,10 +69,6 @@ ul.nav.justify-content-end {
 	padding-right: 20px;
 }
 
-#vline:hover{
- 	pointer-events: none;
-}
-
 #logo{
 	height:55px;
 	width:55px;
