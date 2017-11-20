@@ -1,6 +1,19 @@
 <% include partials/header %>
 <% include partials/navbar %>
 <h1>Your First Express Application</h1>
-<p>In this tutorial, we will create our very first Express app to collect information given to us by the user and manipulate it using Express.</p>
-<p>Before we start this tutorial, please download and install Express. We provide a tutorial in our <a href="/install">installation</a> section on how to do this.
+<p>In this tutorial, we will create our very first Express application using EJS to template our html. We will create a simple website for a MOVIE NAME HERE.
+<p>Before we start this tutorial, <a href="/install"><u>please download and install Express</u></a>. We provide a tutorial in our <a href="/install"><u>installation</u></a> section on how to do this. EJS can be installed via <i>npm</i>. We can install EJS using the following command inside your Nodejs project:
+<figure class="highlight">
+	<pre>
+		<code>
+			//local installation<br>
+			$ npm install ejs --save<br><i>or</i><br>
+			//globally installation<br>
+			$ npm install ejs -g
+		</code>
+	</pre>
+</figure>
+<br>
+<p class="section">Once Express and EJS are setup, create a file called <i>app.js</i> or the name of your entry point specified inside your package.json. For the purposes of this tutorial, we will call this file: <i>app.js</i>.</p>
+<p>Before we begin writing our HTML, we must setup a few things inside app.js.</p>
 <% include partials/footer %>
