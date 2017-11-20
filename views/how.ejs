@@ -91,10 +91,26 @@ to do this, we type in the follow code/method:</p>
 		</code>
 	</pre>
 </figure>
-<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.ejs.</p>
+<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.ejs<br><br> We can access our website by going to our web-browser and entering <i>localhost:port</i> into our URL.</p>
 <hr>
 <h1>Routing</h1>
-<p>Routing determines how our express app responds to client requests, whether they are GET, POST, DELETE, PUT, and so on.</p>
+<p>Routing determines how our express app responds to client requests, whether they are GET, POST, DELETE, PUT, and so on. We have already created a route, recall earlier:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			app.get('/', function(request, response){<br>
+			&nbsp&nbsp&nbsp response.render('index');<br>
+			});
+		</code>
+	</pre>
+</figure>
+<figure class="funfact">
+	<pre>
+		Hint: Browsers send GET to servers when entering/navigating a URL
+	</pre>
+</figure>
+<p>This is a method call to our express application which binds the GET route of "<b>/</b>" aka "http://domainName.com<b>/</b>" to a function which we define on the spot. We can think of <b>/</b> as the root of our website. When the root of our website is called (GET), express will intercept the message and send (in our case) index.ejs to the client.</p>
+<p>We can use similar methods inside express to route different calls like form posts.</p>
 
 
 
