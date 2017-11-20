@@ -22,9 +22,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.get('/', function(request, response){
 	response.render('index');//send index.ejs to client 
 });
-app.get('/index.html', function(request, response){
-	response.render('index');//send index.ejs to client 
-});
 
 app.get('/install', function(request, response){
 	response.render('install');
