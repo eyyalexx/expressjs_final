@@ -1,10 +1,11 @@
 
 
-img {
-	width: 80%;
+#nodelogo {
+	padding-top: 50px;
+	width: 90%;
 	margin: auto;
-	
-
+	display: block;
+    margin: 0 auto;
 }
 
 
