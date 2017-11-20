@@ -1,0 +1,13 @@
+header {
+    height: 100vh;
+    background-image: url(public/pictures/background-image.png);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}

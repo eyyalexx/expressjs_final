@@ -109,11 +109,4 @@ a:hover {
 	line-height: 150%;
 }
 
-#background-image {
-	background-size: cover;
-	background-position: center;
-	display: flex;
-	height: 100px;
-	widht: 100px;
-}
 
