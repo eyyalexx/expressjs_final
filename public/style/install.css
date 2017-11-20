@@ -18,7 +18,7 @@
 
   .highlight pre code {
     font-size: inherit;
-    color: rgb(104, 159, 99); /* Effectively the base text color */
+    color: rgb(104, 159, 99);
   }
 
   h2 code {
@@ -31,5 +31,16 @@
   }
 
   a {
+      transition: color 0.5s ease;
+      -webkit-transition-timing-function: linear;
+      transition-timing-function: linear;
+      text-decoration: none;
+      transition: color 0.5s ease;
       color: black;
+  }
+
+  a:hover {
+      text-decoration: none;
+      transition: color 0.3s ease;
+      color: rgb(104, 159, 99);
   }
