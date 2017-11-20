@@ -1,6 +1,6 @@
 <% include partials/header %>
 <% include partials/navbar %>
-<h1>Your First Express Application</h1>
+<h1>Our First Express Application</h1>
 <p>In this tutorial, we will create our very first Express application using EJS to template our html. We will create a simple website for a MOVIE NAME HERE.
 <p>Before we start this tutorial, <a href="/install"><u>please download and install Express</u></a>. We provide a tutorial in our <a href="/install"><u>installation</u></a> section on how to do this. EJS can be installed via <i>npm</i>. We can install EJS using the following command inside your Nodejs project:
 <figure class="highlight">
@@ -13,7 +13,48 @@
 		</code>
 	</pre>
 </figure>
-<br>
 <p class="section">Once Express and EJS are setup, create a file called <i>app.js</i> or the name of your entry point specified inside your package.json. For the purposes of this tutorial, we will call this file: <i>app.js</i>.</p>
 <p>Before we begin writing our HTML, we must setup a few things inside app.js.</p>
+<p>Like most languages we must include libraries/frameworks we will be using:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			var express = require('express');<br>
+			var bodyParser = require('body-parser');<br>
+			var path = require('path');<br>
+		</code>
+	</pre>
+</figure>
+<p>To use express, we will assign express to a variable:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			var app = express();
+		</code>
+	</pre>
+</figure>
+<p>Next we must specify to express what to do when a client connects to our landing page.<br>
+to do this, we type in the follow code/method:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			app.get('/', function(request, response){<br>
+			&nbsp&nbsp&nbsp response.render('index');<br>
+			});
+		</code>
+	</pre>
+</figure>
+<p>This will tell express to render the file index(.ejs) to the client. We will write the HTML for the ejs file later.</p>
+<p>The last lines of code/methods will run the server on a port you specify:</p>
+<figure class="highlight">
+	<pre>
+		<code>
+			app.listen(80, function(){<br>
+			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 80);<br>
+			});
+		</code>
+	</pre>
+</figure>
+
+
 <% include partials/footer %>
