@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //when user request website
 app.get('/', function(request, response){
-	var css = 'install';
+	var css = 'index';
 	response.render('index', {css: css});//send index.ejs to client 
 });
 

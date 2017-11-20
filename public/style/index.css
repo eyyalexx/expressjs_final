@@ -1,34 +1,7 @@
-a:link {
-	transition: color 0.3s ease;
-	text-decoration: none;
+
+
+img {
+	width: 50%;
 }
-
-
-.intro{
-	line-height: 200%;
-	color: #333333;
-}
-
-.section{
-
-	line-height: 150%;
-}
-
-<<<<<<< HEAD
-=======
-#nodelogo{
-	width:500px;
-	float:right;
-	padding-left:30px;
-}
-
-#background-image {
-	background-size: cover;
-	background-position: center;
-	display: flex;
-	height: 100px;
-	widht: 100px;
-}
->>>>>>> f7daac6a136f51f28c4e3c947cd94746c22aaf0a
 
 
