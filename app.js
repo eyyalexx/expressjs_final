@@ -20,33 +20,39 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //when user request website
 app.get('/', function(request, response){
-	response.render('index');//send index.ejs to client 
+	var css = 'install';
+	response.render('index', {css: css});//send index.ejs to client 
 });
 
 app.get('/install', function(request, response){
-	response.render('install');
+	var css = 'install';
+	response.render('install', {css: css});
 });
 
 app.get('/how', function(request, response){
-	response.render('how');
+	var css = 'how';
+	response.render('how', {css: css});
 });
 
 app.get('/result', function(request, response){
-	response.render('result');
+	var css = 'result';
+	response.render('result', {css: css});
 });
 
 app.get('/rating', function(request, response){
-	response.render('rating');
+	var css = 'rating';
+	response.render('rating', {css: css});
 });
 
 app.get('/credits', function(request, response){
+	var css = 'credits';
 	var contributors = [
         	{ name: 'Alex Grigorev', picture: 'pictures/Alex.jpg' },
         	{ name: 'Taranpreet Saini', picture: 'pictures/Taranpreet.jpg' },
         	{ name: 'Kevin Nguyen', picture: 'pictures/Kevin.jpg' },
 			{ name: 'Dawson Brown', picture: 'pictures/Dawson.jpg'}
     	];
-		response.render('credits', {contributors: contributors});
+		response.render('credits', {contributors: contributors, css: css});
 });
 
 //start server
