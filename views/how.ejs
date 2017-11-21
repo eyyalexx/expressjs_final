@@ -38,7 +38,7 @@
 		</code>
 	</pre>
 </figure>
-<p>This will tell out app to use the <i>public</i> folder for all our static files.</p>
+<p>This will tell out app to use the <i>public</i>&nbsp folder for all our static files.</p>
 <p>The last lines of code/methods will run the server on a port you specify:</p>
 <figure class="highlight">
 	<pre>
@@ -82,12 +82,12 @@
 		</code>
 	</pre>
 </figure>
-<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.html<br><br> We can access our website by going to our web-browser and entering <i>localhost:8000</i> into our URL.</p>
+<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.html<br><br> We can access our website by going to our web-browser and entering <i>localhost:8000</i>&nbsp into our URL.</p>
 <hr>
 
 <h2>Get weather data</h2>
 
-<p>To get the weather data for each city we will use the <i>openweathermap</i> api. More information about how to use the openweathermap api can be found at: <a href="https://openweathermap.org/current"><u>openweathermap.org/current</u></a></p> 
+<p>To get the weather data for each city we will use the <i>openweathermap</i>&nbsp api. More information about how to use the openweathermap api can be found at: <a href="https://openweathermap.org/current"><u>openweathermap.org/current</u></a></p> 
 
 <p>First, we will need to add the request module to our project. This can be done by adding the following code to the top of the app.js file: </p>
 <figure class="highlight">
@@ -136,7 +136,93 @@
 	</pre>
 </figure>
 
-<p>The above code creates a new post route at /weather. Which mean, that everytime a post request is made to <i>localhost:8000/weather</i> the function is invoked.</p>
+<p>The above code creates a new post route at /weather. Which means that everytime a post request is made to <i>localhost:8000/weather</i>&nbsp the function is invoked.</p>
 
+<p>The following line uses the request module to call the openweathermap api.</p>
+<figure class="highlight">
+		<pre>
+			<code>
+				request(url, function (err, response, body) {
+			</code>
+		</pre>
+</figure>
 
+<p>The data recieved from the api is then parsed as JSON and sent as a response.</p>
+
+<hr>
+<h2>Creating the index page</h2>
+
+<p>Create a <i>public</i>&nbsp folder in the root of your project. Then, create the <i>index.html</i>&nbsp file and copy the following code:</p>
+<figure class="highlight">
+		<pre>
+			<code>
+					&lt;!DOCTYPE html&gt;<br />
+					&lt;html lang="en"&gt;<br />
+					&lt;head&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta charset="UTF-8"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;title&gt;Weather App&lt;/title&gt;<br />
+					&nbsp&nbsp&nbsp&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"&gt;&lt;/script&gt;<br>
+					&lt;/head&gt;<br />
+					&lt;body&gt;<br />
+						<br />
+					&nbsp&nbsp&nbsp&lt;div class="container"&gt;<br />
+					
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;h1&gt;Current Forecast&lt;/h1&gt;<br/>
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;input id="city" name="city" type="text" placeholder="Enter a City" required&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;button id="button"&gt;Get Weather&lt;/button&gt;<br />
+					<br/>
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="icon"&gt;&lt;/div&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="temp"&gt;&lt;/div&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="condition"&gt;&lt;/div&gt;<br />
+					
+					&nbsp&nbsp&nbsp&lt;/div&gt;<br>
+					&lt;/body&gt;<br />
+					&lt;/html&gt;
+			</code>
+		</pre>
+</figure>
+
+<p>The HTML code creates a form and defines a couple fields that will be filled with our weather data such as icon, temperature and weather condition.</p>
+
+<p>Next, we will need to use ajax to get the weather data from the /weather route we previously created. Copy the following code to the header tag in <i>index.html</i>.</p>
+
+<figure class="highlight">
+		<pre>
+			<code>
+					&lt;script&gt;<br />
+					$("#button").click(function () {<br />
+					&nbsp&nbsp&nbsp var city = $("input:text").val();<br />
+				<br />
+				&nbsp&nbsp&nbsp var request = $.ajax({<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp url: "weather",<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp type: "POST",<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp data: { city: city },<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp dataType: "json"<br />
+				&nbsp&nbsp&nbsp });<br />
+				<br />
+				&nbsp&nbsp&nbsp request.done(function (msg) {<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp console.log(msg);<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp if (!msg.hasOwnProperty('error')) {<br />
+				
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#temp").html("&lt;b&gt;" + Math.round(msg.main.temp) + " °C&lt;/b&gt;");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#icon").html("&lt;img src='http://openweathermap.org/img/w/" + + ".png'&gt;&lt;/img&gt;");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $('#condition').html("&lt;b&gt;" + msg.weather[0].main + "&lt;/b&gt;");<br />
+				<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp } else {<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#temp").text("Error!");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#icon").html("");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $('#condition').text("");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp }<br />
+				&nbsp&nbsp&nbsp });<br />
+				});<br />
+				&lt;/script&gt;
+			</code>
+		</pre>
+</figure>
+<p>The Javascript essentially sends a ajax request to our /weather route along with the name of the city from the input field. The information received will be then filled into our html fields created earlier.</p>
+
+<p><b>Finished!</b> Your app should be working.</p>
+<p>Restart the webserver and navigate to <i>localhost:8000/index.html</i>&nbsp on you web browser</p>
 <% include partials/footer %>
