@@ -11,21 +11,15 @@ router.post('/', function (req, res) {
   
     request(url, function (err, response, body) {
       if(err){
-        //res.render('index', {weather: null, error: 'Error, please try again'});
+
         res.json({error: 'Error!'});
       } else {
         var weather = JSON.parse(body)
         if(weather.main == undefined){
-          //res.render('index', {weather: null, error: 'Error, please try again'});
+
           res.json({error: 'Main Error!'});
         } else {
-          var weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
           res.json(weather);
-          //console.log(weather.main.temp);
-          //var css = 'result';
-          //res.render('result', {temp: weather.main.temp, css: css});
-         
-          //res.render('index', {weather: weatherText, error: null});
         }
       }
     });
