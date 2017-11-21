@@ -2,6 +2,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+<<<<<<< HEAD
+=======
+            $('input:text').keypress(function(e){
+                if(e.keyCode==13)
+                    $('#butt').click();
+            });
+
+>>>>>>> 68f30bcb691c3d19123601b5762ac1f7733881ec
 
             $("#butt").click(function () {
                 var city = $("input:text").val();
@@ -15,12 +23,20 @@
 
                 request.done(function (msg) {
                     console.log(msg);
+<<<<<<< HEAD
                     if (!msg.hasOwnProperty('error')) {
                         $("#temp").text("Temperature: " + msg.main.temp+" °C");
                         $("#icon").html("<img src='http://openweathermap.org/img/w/" + msg.weather[0].icon + ".png'></img>");
+=======
+                    if(!msg.hasOwnProperty('error')){
+                        $("#temp").text(Math.round(msg.main.temp));
+                        $("#icon").html("<img src='http://openweathermap.org/img/w/"+msg.weather[0].icon+".png'></img>");
+>>>>>>> 68f30bcb691c3d19123601b5762ac1f7733881ec
                         $('#condition').text(msg.weather[0].main);
                     } else {
                         $("#temp").text("Error!");
+                        $("#icon").html("");
+                        $('#condition').text("");
                     }
                 });
 
