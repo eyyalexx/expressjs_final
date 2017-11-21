@@ -4,36 +4,7 @@
 			<img id="nodelogo" src="pictures/nodejs2.png">
 		</div>
 
-		<!--
-			<a href="https://expressjs.com/">
-				<h1 style="font-size:50px;">Express</h1>
-			</a>
-			<h4 class="intro">A minimalistic, easy to use, open-source web application framework for
-				<a href="https://nodejs.org/en/">Nodejs</a>.</h4>
-		</div>
-
-		<br>
-		<br>
-
-		<div class="section">
-			<h4>Introduction</h4>
-			<p>Node.js is a Javascript run-time environment used to execute Javascript on the server. It has the expressed goal of using
-				Javascript for both client and server side development so that web development can be unified around a single language.
-				Express.js is the standard server side framework for Node.js. It is designed to make the building of web applications
-				and APIs easy and intuitive.</p>
-		</div>
-
-		<div class="section">
-			<h4>Advantages and Disadvantages</h4>
-			<p>stuff</p>
-		</div>
-
-		<div class="section">
-			<h4>Industry Use</h4>
-			<p>More stuff</p>
-		</div>
-
-	-->
+		<hr>
 		<div id="snapshot">
 			<h1>Snapshot</h1>
 			<p>
@@ -60,12 +31,38 @@
 			<br>
 		</div>
 		<hr>
-		<h1>Strengths/Weaknesses:</h1>
 
+		<div id="strength&weakness">
+			<h1>Strengths/Weaknesses:</h1>
+				<p>
+					<h4>Strengths</h4>
+					<ul>
+						<li>Fast App Development: Since Javascript is used for both back and front end development, Javascript developers can be full-stack developers. This makes the development process much faster.</li>
+						<li>Large Open Source Community: As one of the most popular Node.js frameworks, Express is constantly reviewed and improved by a large community of users. It is also very well documented.</li>
+						<li>Easy Integration of Middleware: Express is very minimalistic, as such, the Express team as published many Middleware packages than can be used as needed to solve many development issues.</li>
+						<li>I/O Handling: Express has a reputation for being a great framework to use for applications that get many requests from users.
+						<li>Easy to Learn: Being so wall documented, Express is very easy to learn. Plus, any familiarity with Javascript will make it easy to get started.</li>
+					</ul>
+				</p>
+				<p>
+					<h4>Weaknesses</h4>
+					<ul>
+						<li>Callbacks: The event-driven, callback nature of Express (and Node.js) can be diffcult for developers with experience using other languages and frameworks to immediately graps.</li>
+						<li>Understanding Middleware: Since the use of Middleware functions is the basis for a lot of Express, understanding the core concepts of Middleware and how to use it is essential, but can be difficult to fully understand.</li>
+					</ul>
+				</p>
+		</div>
+		<hr>
 
-		<h1>What to do: REMOVE LATER</h1>
-		Page 1. A summary snapshot presentation of the Framework/CMS: Popularity, strengths, weaknesses, which developers mostly
-		use it and for what kind of websites. Specify if it is backend, or frontend, or both. That page must be publicly available
-		for your classmates to study for the final exam and will be considered required readings for all. A copy of it (may even
-		be a pdf snapshot) can be hosted on a different host if your original page is not permanently and/or globally accessible.</p>
+		<div id="use">		
+			<h1>Who Uses Express?</h1>
+				<p>
+					Express particularly excels in web applications which interact heavily with, and collect a lot of data from, third parties, as well as applications which need to be updated in real-time as data is recieved. As mentioned above, Node.js and Express are excellent at handling many simultaneous requests from users. The non-blocking nature of Node.js then allows for real-time updates to be made, with immense scalability.	
+				</p>
+				<p>
+					A prime example of a company that fits such a mould and uses Express, is Uber. Uber obviously has to have very good I/O handling, and Express's exceptional abilities to handle that are precisly why Uber uses it. A full lists of companies using Express can be found <a href="https://expressjs.com/en/resources/companies-using-express.html">here</a>.
+				</p>	
+		</div>
+		<hr>		
+		
 <% include partials/footer %>
