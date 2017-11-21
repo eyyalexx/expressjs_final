@@ -6,6 +6,8 @@ var app = express();
 var port = 8000;
 
 var routes = require('./routes/index.js');
+var weather = require('./routes/weather.js');
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use('/', routes);
+app.use('/weather', weather);
 
 //start server
 app.listen(port, function(){
