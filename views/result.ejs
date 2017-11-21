@@ -2,7 +2,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            
+            $('input:text').keypress(function(e){
+                if(e.keyCode==13)
+                    $('#butt').click();
+            });
+
+
             $("#butt").click(function () {
                 var city = $("input:text").val();
 
@@ -16,11 +21,13 @@
                 request.done(function (msg) {
                     console.log(msg);
                     if(!msg.hasOwnProperty('error')){
-                        $("#temp").text(msg.main.temp);
+                        $("#temp").text(Math.round(msg.main.temp));
                         $("#icon").html("<img src='http://openweathermap.org/img/w/"+msg.weather[0].icon+".png'></img>");
                         $('#condition').text(msg.weather[0].main);
                     }else{
                         $("#temp").text("Error!");
+                        $("#icon").html("");
+                        $('#condition').text("");
                     }
                 });
 
