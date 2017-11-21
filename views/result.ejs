@@ -1,4 +1,64 @@
-<% include partials/header %>
-<% include partials/navbar %>
-<h1>RESULTS</h1>
-<% include partials/footer %>
+<% include partials/result_header %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#butt").click(function () {
+
+                $.ajax({
+                    url: "/weather",
+                    type: "POST",
+                    data: { city: city },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        //$("result").html(data.weather.main.temp);
+                    }
+                });
+            });
+        });
+
+        /*
+        function getWeather() {
+            var city = document.getElementById('city').value;
+            //console.log(city);
+            //return false;
+            $.ajax({
+                url: "/weather",
+                type: "POST",
+                data: { city: city },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $("result").html(data.weather.main.temp);
+                }
+            });
+            
+
+        }*/
+    </script>
+    </head>
+
+    <body>
+        <div class="container-fluid align-content-center">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" id="body">
+                    <% include partials/navbar %>
+                        <h1>RESULTS</h1>
+
+
+
+
+
+
+                        <div class="container">
+
+                            <input id="city" name="city" type="text" placeholder="Enter a City" required id="city">
+                            <button id="butt">Get Weather</button>
+
+                            <div id="result"></div>
+
+                        </div>
+                        <p> </p>
+
+                        <% include partials/footer %>

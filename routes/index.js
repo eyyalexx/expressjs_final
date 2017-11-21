@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
 //when user request website
 router.get('/', function(request, response){
@@ -17,10 +18,19 @@ router.get('/how', function(request, response){
 	response.render('how', {css: css});
 });
 
-router.get('/result', function(request, response){
+//weather app
+router.get('/result', function(req, response){
+	var url = 'localhost:8000/weather';
+
+	request(url, function (err, response, body) {
+		//var w = JSON.parse(body)
+		//console.log(body);
+	});
+
 	var css = 'result';
 	response.render('result', {css: css});
 });
+// app
 
 router.get('/rating', function(request, response){
 	var css = 'rating';
