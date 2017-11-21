@@ -6,17 +6,18 @@ var request = require('request');
 
 router.post('/', function (req, res) {
     var city = req.body.city;
+    console.log(city);
     var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
   
     request(url, function (err, response, body) {
       if(err){
         //res.render('index', {weather: null, error: 'Error, please try again'});
-        console.log('Error!');
+        res.json({error: 'Error!'});
       } else {
         var weather = JSON.parse(body)
         if(weather.main == undefined){
           //res.render('index', {weather: null, error: 'Error, please try again'});
-          console.log('Main Error!');
+          res.json({error: 'Main Error!'});
         } else {
           var weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
           res.json(weather);

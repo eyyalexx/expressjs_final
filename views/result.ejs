@@ -2,39 +2,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            
             $("#butt").click(function () {
+                var city = $("input:text").val();
 
-                $.ajax({
-                    url: "/weather",
+                var request = $.ajax({
+                    url: "weather",
                     type: "POST",
                     data: { city: city },
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        //$("result").html(data.weather.main.temp);
+                    dataType: "json"
+                });
+
+                request.done(function (msg) {
+                    console.log(msg);
+                    if(!msg.hasOwnProperty('error')){
+                        $("#result").text(msg.main.temp);
+                    }else{
+                        $("#result").text("Error!");
                     }
                 });
+
             });
         });
 
-        /*
-        function getWeather() {
-            var city = document.getElementById('city').value;
-            //console.log(city);
-            //return false;
-            $.ajax({
-                url: "/weather",
-                type: "POST",
-                data: { city: city },
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $("result").html(data.weather.main.temp);
-                }
-            });
-            
-
-        }*/
     </script>
     </head>
 
@@ -46,14 +36,9 @@
                     <% include partials/navbar %>
                         <h1>RESULTS</h1>
 
-
-
-
-
-
                         <div class="container">
 
-                            <input id="city" name="city" type="text" placeholder="Enter a City" required id="city">
+                            <input id="city" name="city" type="text" placeholder="Enter a City" required>
                             <button id="butt">Get Weather</button>
 
                             <div id="result"></div>
