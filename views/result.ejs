@@ -16,9 +16,11 @@
                 request.done(function (msg) {
                     console.log(msg);
                     if(!msg.hasOwnProperty('error')){
-                        $("#result").text(msg.main.temp);
+                        $("#temp").text(msg.main.temp);
+                        $("#icon").html("<img src='http://openweathermap.org/img/w/"+msg.weather[0].icon+".png'></img>");
+                        $('#condition').text(msg.weather[0].main);
                     }else{
-                        $("#result").text("Error!");
+                        $("#temp").text("Error!");
                     }
                 });
 
@@ -41,7 +43,9 @@
                             <input id="city" name="city" type="text" placeholder="Enter a City" required>
                             <button id="butt">Get Weather</button>
 
-                            <div id="result"></div>
+                            <div id="temp"></div>
+                            <div id="condition"></div>
+                            <div id="icon"></div>
 
                         </div>
                         <p> </p>
