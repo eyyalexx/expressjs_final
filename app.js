@@ -3,7 +3,9 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var app = express();
-var port = 8000;
+//var port = 8000;
+
+var port = process.env.PORT || 8000;
 
 var routes = require('./routes/index.js');
 var weather = require('./routes/weather.js');
