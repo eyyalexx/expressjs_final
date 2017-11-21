@@ -2,7 +2,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            
+
             $("#butt").click(function () {
                 var city = $("input:text").val();
 
@@ -15,11 +15,11 @@
 
                 request.done(function (msg) {
                     console.log(msg);
-                    if(!msg.hasOwnProperty('error')){
-                        $("#temp").text(msg.main.temp);
-                        $("#icon").html("<img src='http://openweathermap.org/img/w/"+msg.weather[0].icon+".png'></img>");
+                    if (!msg.hasOwnProperty('error')) {
+                        $("#temp").text("Temperature: " + msg.main.temp+" °C");
+                        $("#icon").html("<img src='http://openweathermap.org/img/w/" + msg.weather[0].icon + ".png'></img>");
                         $('#condition').text(msg.weather[0].main);
-                    }else{
+                    } else {
                         $("#temp").text("Error!");
                     }
                 });
@@ -36,10 +36,10 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8" id="body">
                     <% include partials/navbar %>
-                        <h1>RESULTS</h1>
 
                         <div class="container">
 
+                            <h1>Weather Application</h1>
                             <input id="city" name="city" type="text" placeholder="Enter a City" required>
                             <button id="butt">Get Weather</button>
 
@@ -48,6 +48,7 @@
                             <div id="icon"></div>
 
                         </div>
-                        <p> </p>
+
+
 
                         <% include partials/footer %>
