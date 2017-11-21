@@ -14,8 +14,13 @@ h1 {
     color: black;
 }
 
-#temp, #condition {
-    color: rgb(104, 159, 99);
+#temp, #condition{
+    font-size: 55px;
+}
+
+#temp, #condition, #icon{ 
+    color: rgb(67, 67, 67);
+
 }
 
 input {
