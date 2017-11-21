@@ -1,19 +1,9 @@
 <% include partials/header %>
 <% include partials/navbar %>
 <h1>Our First Express Application</h1>
-<p>In this tutorial, we will create our very first Express application using EJS to template our html. We will create a <i>weather app</i>.
-<p>Before we start this tutorial, <a href="/install"><u>please download and install Express</u></a>. We provide a tutorial in our <a href="/install"><u>installation</u></a> section on how to do this. EJS can be installed via <i>npm</i>. We can install EJS using the following command inside your Nodejs project:
-<figure class="highlight">
-	<pre>
-		<code>
-			//local installation<br>
-			$ npm install ejs --save<br><i>or</i><br>
-			//globally installation<br>
-			$ npm install ejs -g
-		</code>
-	</pre>
-</figure>
-<p class="section">Once Express and EJS are setup, create a file named <i>app.js</i>. This may be different depending on the settings you entered when initializing your node project. For the purposes of this tutorial we will call this file <i>app.js</i></p>
+<p>In this tutorial, we will create our very first Express application. We will be creating a simple <i>weather app</i>.
+<p>Before we start this tutorial, <a href="/install"><u>please download and install Express</u></a>. We provide a tutorial in our <a href="/install"><u>installation</u></a> section on how to do this. 
+<p class="section">Once Express is setup, create a file named <i>app.js</i>. This may be different depending on the settings you entered when initializing your node project. For the purposes of this tutorial we will call this file <i>app.js</i></p>
 <figure class="hint">
 	<pre>
 		"app.js" will be the name of your <b>entry point</b> specified inside your package.json
@@ -21,6 +11,7 @@
 </figure>
 <p>Before we begin writing our HTML, we must setup a few things inside app.js.</p>
 <hr>
+<h2>Setup app.js</h2>
 <p>Like most languages we must include libraries/frameworks we will be using:</p>
 <figure class="highlight">
 	<pre>
@@ -39,24 +30,21 @@
 		</code>
 	</pre>
 </figure>
-<p>Next we must specify to express what to do when a client connects to our landing page.<br>
-to do this, we type in the follow code/method:</p>
+<p>Next we must tell express to serve static files such as HTML, CSS files, and JavaScript files. To do this, we type in the following code:</p>
 <figure class="highlight">
 	<pre>
 		<code>
-			app.get('/', function(request, response){<br>
-			&nbsp&nbsp&nbsp response.render('index');<br>
-			});
+			app.use(express.static(path.join(__dirname,'public')));
 		</code>
 	</pre>
 </figure>
-<p>This will tell express to render the file index(.ejs) to the client. We will write the HTML for the ejs file later.</p>
+<p>This will tell out app to use the <i>public</i>&nbsp folder for all our static files.</p>
 <p>The last lines of code/methods will run the server on a port you specify:</p>
 <figure class="highlight">
 	<pre>
 		<code>
-			app.listen(80, function(){<br>
-			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 80);<br>
+			app.listen(8000, function(){<br>
+			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 8000);<br>
 			});
 		</code>
 	</pre>
@@ -70,16 +58,14 @@ to do this, we type in the follow code/method:</p>
 			var bodyParser = require('body-parser');<br>
 			var path = require('path');<br><br>
 			var app = express();<br><br>
-			app.get('/', function(request, response){<br>
-			&nbsp&nbsp&nbsp response.render('index');<br>
-			});<br><br>
-			app.listen(80, function(){<br>
-			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 80);<br>
+			app.use(express.static(path.join(__dirname,'public')));<br><br>
+			app.listen(8000, function(){<br>
+			&nbsp&nbsp&nbsp console.log('Server started on Port ' + 8000);<br>
 			});
 		</code>
 	</pre>
 </figure>
-<p>To host this website, navigate into your project and open a terminal and type in the following Command:</p>
+<p>To run our webserver, open terminal and navigate into your project and type in the following command:</p>
 <figure class="highlight">
 	<pre>
 		<code>
@@ -92,32 +78,151 @@ to do this, we type in the follow code/method:</p>
 	<pre>
 		<code>
 			$ node app.js<br>
-			Server started on Port 80
+			Server started on Port 8000
 		</code>
 	</pre>
 </figure>
-<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.ejs<br><br> We can access our website by going to our web-browser and entering <i>localhost:port</i> into our URL.</p>
+<p>Congratulations, we just made our first express application!<br>Now the fun part, editing/creating our index.html<br><br> We can access our website by going to our web-browser and entering <i>localhost:8000</i>&nbsp into our URL.</p>
 <hr>
-<h1>Routing</h1>
-<p>Routing determines how our express app responds to client requests, whether they are GET, POST, DELETE, PUT, and so on. We have already created a route, recall earlier:</p>
+
+<h2>Get weather data</h2>
+
+<p>To get the weather data for each city we will use the <i>openweathermap</i>&nbsp api. More information about how to use the openweathermap api can be found at: <a href="https://openweathermap.org/current"><u>openweathermap.org/current</u></a></p> 
+
+<p>First, we will need to add the request module to our project. This can be done by adding the following code to the top of the app.js file: </p>
 <figure class="highlight">
 	<pre>
 		<code>
-			app.get('/', function(request, response){<br>
-			&nbsp&nbsp&nbsp response.render('index');<br>
-			});
+			var request = require('request');
 		</code>
 	</pre>
 </figure>
-<figure class="hint">
+
+<p>And then run the following in terminal from your project folder: </p>
+<figure class="highlight">
+		<pre>
+			<code>
+				$ npm install -S request
+			</code>
+		</pre>
+</figure>
+
+<p>Add the following code to your <i>app.js</i>:</p>
+<figure class="highlight">
 	<pre>
-		Hint: Browsers send GET to servers when entering/navigating a URL
+		<code>
+			
+			app.post('/weather', function (req, res) {<br>
+			&nbsp&nbsp&nbsp var city = req.body.city;<br>
+			&nbsp&nbsp&nbsp console.log(city);<br>
+			&nbsp&nbsp&nbsp var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`<br><br>
+			  
+			&nbsp&nbsp&nbsp request(url, function (err, response, body) {<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp if(err){<br>
+			
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp res.json({error: 'Error!'});<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp } else {<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp var weather = JSON.parse(body)<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp if(weather.main == undefined){<br>
+			
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp res.json({error: 'Main Error!'});<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp } else {<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbspres.json(weather);<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp }<br>
+			&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp }<br>
+			&nbsp&nbsp&nbsp });<br>
+			}); <br>
+		</code>
 	</pre>
 </figure>
-<p>This is a method call to our express application which binds the GET route of "<b>/</b>" aka "http://domainName.com<b>/</b>" to a function which we define on the spot. We can think of <b>/</b> as the root of our website. When the root of our website is called (GET), express will intercept the message and send (in our case) index.ejs to the client.</p>
-<p>We can use similar methods inside express to route different calls like form posts.</p>
 
+<p>The above code creates a new post route at /weather. Which means that everytime a post request is made to <i>localhost:8000/weather</i>&nbsp the function is invoked.</p>
 
+<p>The following line uses the request module to call the openweathermap api.</p>
+<figure class="highlight">
+		<pre>
+			<code>
+				request(url, function (err, response, body) {
+			</code>
+		</pre>
+</figure>
 
+<p>The data recieved from the api is then parsed as JSON and sent as a response.</p>
 
+<hr>
+<h2>Creating the index page</h2>
+
+<p>Create a <i>public</i>&nbsp folder in the root of your project. Then, create the <i>index.html</i>&nbsp file and copy the following code:</p>
+<figure class="highlight">
+		<pre>
+			<code>
+					&lt;!DOCTYPE html&gt;<br />
+					&lt;html lang="en"&gt;<br />
+					&lt;head&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta charset="UTF-8"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;<br />
+					&nbsp&nbsp&nbsp&lt;title&gt;Weather App&lt;/title&gt;<br />
+					&nbsp&nbsp&nbsp&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"&gt;&lt;/script&gt;<br>
+					&lt;/head&gt;<br />
+					&lt;body&gt;<br />
+						<br />
+					&nbsp&nbsp&nbsp&lt;div class="container"&gt;<br />
+					
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;h1&gt;Current Forecast&lt;/h1&gt;<br/>
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;input id="city" name="city" type="text" placeholder="Enter a City" required&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;button id="button"&gt;Get Weather&lt;/button&gt;<br />
+					<br/>
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="icon"&gt;&lt;/div&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="temp"&gt;&lt;/div&gt;<br />
+					&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&lt;div id="condition"&gt;&lt;/div&gt;<br />
+					
+					&nbsp&nbsp&nbsp&lt;/div&gt;<br>
+					&lt;/body&gt;<br />
+					&lt;/html&gt;
+			</code>
+		</pre>
+</figure>
+
+<p>The HTML code creates a form and defines a couple fields that will be filled with our weather data such as icon, temperature and weather condition.</p>
+
+<p>Next, we will need to use ajax to get the weather data from the /weather route we previously created. Copy the following code to the header tag in <i>index.html</i>.</p>
+
+<figure class="highlight">
+		<pre>
+			<code>
+					&lt;script&gt;<br />
+					$("#button").click(function () {<br />
+					&nbsp&nbsp&nbsp var city = $("input:text").val();<br />
+				<br />
+				&nbsp&nbsp&nbsp var request = $.ajax({<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp url: "weather",<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp type: "POST",<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp data: { city: city },<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp dataType: "json"<br />
+				&nbsp&nbsp&nbsp });<br />
+				<br />
+				&nbsp&nbsp&nbsp request.done(function (msg) {<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp console.log(msg);<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp if (!msg.hasOwnProperty('error')) {<br />
+				
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#temp").html("&lt;b&gt;" + Math.round(msg.main.temp) + " °C&lt;/b&gt;");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#icon").html("&lt;img src='http://openweathermap.org/img/w/" + + ".png'&gt;&lt;/img&gt;");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $('#condition').html("&lt;b&gt;" + msg.weather[0].main + "&lt;/b&gt;");<br />
+				<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp } else {<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#temp").text("Error!");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $("#icon").html("");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp $('#condition').text("");<br />
+				&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp }<br />
+				&nbsp&nbsp&nbsp });<br />
+				});<br />
+				&lt;/script&gt;
+			</code>
+		</pre>
+</figure>
+<p>The Javascript essentially sends a ajax request to our /weather route along with the name of the city from the input field. The information received will be then filled into our html fields created earlier.</p>
+
+<p><b>Finished!</b> Your app should be working.</p>
+<p>Restart the webserver and navigate to <i>localhost:8000/index.html</i>&nbsp on you web browser</p>
 <% include partials/footer %>

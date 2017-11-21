@@ -1,40 +1,69 @@
 <% include partials/result_header %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/weather-icons.min.css">
     <script>
         $(document).ready(function () {
-            $("#butt").click(function () {
+            var weatherIcons = {};
+            var request = $.ajax({
+                url: "icons.json",
+                type: "GET",
+                dataType: "json"
+            });
 
-                $.ajax({
-                    url: "/weather",
+            request.done(function (msg) {
+                weatherIcons = msg;
+            });
+
+
+            $('input:text').keypress(function (e) {
+                if (e.keyCode == 13)
+                    $('#butt').click();
+            });
+
+
+            $("#butt").click(function () {
+                var city = $("input:text").val();
+
+                var request = $.ajax({
+                    url: "weather",
                     type: "POST",
                     data: { city: city },
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        //$("result").html(data.weather.main.temp);
+                    dataType: "json"
+                });
+
+                request.done(function (msg) {
+                    console.log(msg);
+                    if (!msg.hasOwnProperty('error')) {
+                        var prefix = 'wi wi-';
+                        var code = msg.weather[0].id;
+                        var icon = weatherIcons[code].icon;
+
+                        // If we are not in the ranges mentioned above, add a day/night prefix.
+                        if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+                            icon = 'day-' + icon;
+                        }
+
+                        // Finally tack on the prefix.
+                        icon = prefix + icon;
+
+                        
+                        $("#temp").html("<b>"+Math.round(msg.main.temp) + " °C</b>");
+                        $("#icon").html("<i class='"+icon+"' style='padding-top:70px;padding-bottom:30px;font-size:120px'></i>");
+                        //$("#icon").html("<img src='http://openweathermap.org/img/w/" + + ".png'></img>");
+                        $('#condition').html("<b>"+msg.weather[0].main+"</b>");
+
+
+
+                    } else {
+                        $("#temp").text("Error!");
+                        $("#icon").html("");
+                        $('#condition').text("");
                     }
                 });
+
             });
         });
 
-        /*
-        function getWeather() {
-            var city = document.getElementById('city').value;
-            //console.log(city);
-            //return false;
-            $.ajax({
-                url: "/weather",
-                type: "POST",
-                data: { city: city },
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $("result").html(data.weather.main.temp);
-                }
-            });
-            
-
-        }*/
     </script>
     </head>
 
@@ -44,21 +73,18 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8" id="body">
                     <% include partials/navbar %>
-                        <h1>RESULTS</h1>
-
-
-
-
-
 
                         <div class="container">
 
-                            <input id="city" name="city" type="text" placeholder="Enter a City" required id="city">
+                            <h1>Current Forecast</h1>
+                            <input id="city" name="city" type="text" placeholder="Enter a City" required>
                             <button id="butt">Get Weather</button>
+                            
+                            <div id="icon"></div>
+                            <div id="temp"></div>
+                            <div id="condition"></div>
 
-                            <div id="result"></div>
 
                         </div>
-                        <p> </p>
 
                         <% include partials/footer %>
