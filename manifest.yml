@@ -1,0 +1,7 @@
+---
+applications:
+- name: cps530express
+  memory: 512M
+  random-route: false
+  instances: 1
+  buildpack: nodejs_buildpack
